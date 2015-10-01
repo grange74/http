@@ -70,8 +70,7 @@ func (c *Client) Send(request *Request, method string) (*Response, error) {
 
 	req, err := http.NewRequest(method, request.URL, bytes.NewReader(request.Payload))
 
-	//TODO check if we really need this check,
-	// though it might be needed for GETS that don't have content
+	// Not all requests require a ContentType (e.g. GETs)
 	if request.ContentType != ContentTypeNone {
 		req.Header.Set("Content-Type", request.ContentType)
 	}
