@@ -1,9 +1,6 @@
 # http
 A HTTP Client that simplifies the usage of Go's standard net/http package.
 
-So why not use the standard package directly?
-Well you can but this just simplifies things if you are a Go newbies or have a simple use case.
-
 ## Features
 
 * If you don't specify a Timeout for your request, it has a default which isn't infinite
@@ -48,11 +45,10 @@ Check the Response:
 	}
 
 ## Installing
-Using this client is easy. Just use go get to install the latest version
-of the library.
+Download the source of the latest version using go get:
 
-    $ go get github.com/grange74/http
+    $ go get github.com/retrievercommunications/http
 
-Next include in your application.
+Then include in your application:
 
-    import "github.com/grange74/http"
+    import "github.com/retrievercommunications/http"
