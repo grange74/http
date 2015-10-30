@@ -16,11 +16,11 @@ Create a new client:
 	
 Create your own request with a specific timeout:
 
-	req := &Request{
+	req := &http.Request{
 		URL:         url,
 		Timeout:     10, // in seconds
 		Payload:     []byte("Hello"),
-		ContentType: ContentTypeText,
+		ContentType: http.ContentTypeText,
 	}
 
 Helper methods for creating common requests:

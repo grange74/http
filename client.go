@@ -97,7 +97,15 @@ func (c *Client) Send(request *Request, method string) (*Response, error) {
 	}
 
 	// Keep the Cookies for the next request
-	c.cookies = resp.Cookies()
+	for _, cookie := range resp.Cookies() {
+		if index := getCookieIndex(cookie.Name, c.cookies); index > -1 {
+			// update existing cookie
+			c.cookies[index] = cookie
+		} else {
+			// add new cookies
+			c.cookies = append(c.cookies, cookie)
+		}
+	}
 
 	response := &Response{
 		StatusCode: resp.StatusCode,
@@ -105,4 +113,13 @@ func (c *Client) Send(request *Request, method string) (*Response, error) {
 	}
 
 	return response, nil
+}
+
+func getCookieIndex(name string, cookies []*http.Cookie) int {
+	for index, cookie := range cookies {
+		if cookie.Name == name {
+			return index
+		}
+	}
+	return -1
 }
