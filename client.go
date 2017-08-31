@@ -27,6 +27,7 @@ type Request struct {
 type Response struct {
 	StatusCode int // e.g. 200
 	Payload    []byte
+	Header     http.Header
 }
 
 // NewRequest returns a new Request given a URL, payload and contentType.
@@ -110,6 +111,7 @@ func (c *Client) Send(request *Request, method string) (*Response, error) {
 	response := &Response{
 		StatusCode: resp.StatusCode,
 		Payload:    payload,
+		Header:     resp.Header,
 	}
 
 	return response, nil
